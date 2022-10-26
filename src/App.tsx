@@ -1,14 +1,19 @@
 import './App.css';
 import Home from './components/home/Home';
-import { Routes, Route, useRoutes } from 'react-router-dom';
+import { Routes, Route, useRoutes, Navigate } from 'react-router-dom';
 import Dashboard from './components/dashboard/Dashboard';
 import { Sidebar } from './components/sidebar/Sidebar';
 import { Users } from './components/users/Users';
 import { User } from './components/user/User';
 import { NotFound } from './components/notFound/NotFound';
 import { UserDetails } from './components/userDetails/UserDetails';
+import { Login } from './components/login/Login';
+import { ProtectedRoute } from './components/protectedRoute/ProtectedRoute';
+import { useState } from 'react';
 
 function App() {
+
+
 
   const routes = [
     { path: "/", element: <Home /> },
@@ -22,15 +27,19 @@ function App() {
     { path: "*", element: <NotFound /> },
   ];
 
+
+
   //Forma 1 Utilizando routes y las rutas definidas dentro de este
   return (
     <>
-      <div className='home-span'>
-        <Sidebar />
-      </div>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/dashboard' element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
         <Route path='/users' element={<Users />} />
         <Route path='/user/:usr' element={<User />} >
           <Route path='details' element={<UserDetails />} />
