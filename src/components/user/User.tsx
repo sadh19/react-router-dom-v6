@@ -1,8 +1,7 @@
-import { Link, useParams, Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { CustomLink } from '../customLink/CustomLink';
-import { UserDetails } from '../userDetails/UserDetails';
 
-export const User = () => {
+const User = () => {
 
   const { usr } = useParams();
 
@@ -19,3 +18,5 @@ export const User = () => {
     </div>
   </>);
 };
+
+export default User;

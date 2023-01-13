@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const Users = () => {
+const Users = () => {
 
   const users = ['saul', 'alondra', 'carlos', 'abraham'];
 
@@ -13,3 +13,5 @@ export const Users = () => {
   </>);
 
 };
+
+export default Users;
